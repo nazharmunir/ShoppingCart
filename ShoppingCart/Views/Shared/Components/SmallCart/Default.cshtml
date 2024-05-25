@@ -1,0 +1,33 @@
+﻿@model SmallCartViewModel
+
+@if (Model != null)
+{
+    <p>Items in cart: <span class="badge badge-primary">@Model.NumberOfItems</span></p>
+
+    <table class="table">
+        <tr>
+            <th>Total</th>
+            <th>Discount</th> <!-- New column for discount -->
+        </tr>
+        <tr>
+            <td><b>@Model.TotalAmount.ToString("C2")</b></td>
+            <td>
+                @if (Model.Discount > 0)
+                {
+                    <b>@Model.Discount.ToString("C2")</b>
+                }
+                else
+                {
+                    <span>No discount applied</span>
+                }
+            </td>
+        </tr>
+    </table>
+
+    <a class="btn btn-primary" asp-controller="Cart" asp-action="Index">View Cart</a>
+    <a class="btn btn-danger" asp-controller="Cart" asp-action="Clear">Clear Cart</a>
+}
+else
+{
+    <p class="lead m-0">Your cart is empty</p>
+}
